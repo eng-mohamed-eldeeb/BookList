@@ -42,7 +42,7 @@ form.addEventListener('submit', (e) => {
   localStorage.books = JSON.stringify(books);
 });
 // delete the book, remove them from the book list and local storage
-function deleteBook (e){
+function deleteBook(e) {
   if (e.target.className === 'delete') {
     const li = e.target.parentElement;
     li.parentNode.removeChild(li);
