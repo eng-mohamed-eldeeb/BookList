@@ -5,7 +5,7 @@ class book {
     this.author = author;
   }
 }
-// to create end add the book
+// to create and add the book
 function creatAndAddBooks(book, ul) {
   //create list li elemnts
   const li = document.createElement("li");
