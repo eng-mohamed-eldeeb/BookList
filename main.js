@@ -27,7 +27,10 @@ function creatAndAddBooks(book, ul) {
   ul.appendChild(li);
 }
 // create the book list
-const books = JSON.parse(localStorage.books);
+let books = [];
+if (localStorage.books){
+  books = JSON.parse(localStorage.books);
+}
 // call nedded elements from the document
 const bookList = document.querySelector('.book-list');
 const form = document.getElementById('abbBookForm');
