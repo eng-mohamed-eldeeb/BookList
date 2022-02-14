@@ -41,8 +41,8 @@ form.addEventListener('submit', (e) => {
   creatAndAddBooks(newBooke, bookList);
   localStorage.books = JSON.stringify(books);
 });
-//create storaged books
-for(let i=0; i<books.length; i++){
+// create storaged books
+for (let i = 0; i < books.length; i+=1) {
   const newBooke = new Book(books[i].title, books[i].author);
   creatAndAddBooks(newBooke, bookList);
 }
