@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+.delete {
+  padding: 0.2em 0.4em;
+  border: 1px solid #000;
+  font-size: 0.8em;
+}
+
+ul {
+  list-style: none;
+}
+
+.hero {
+  padding: 2rem 0 0 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  padding: 0.3rem 0.5rem;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  padding-bottom: 2rem;
+}
+
+.books {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.3rem;
+}
+
+.book-list,
+.book-list li {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.book-list hr {
+  width: 100%;
+  margin: 0.7rem 0;
+}
+
+#abbBookForm {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
