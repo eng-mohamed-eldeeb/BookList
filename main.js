@@ -28,7 +28,7 @@ function creatAndAddBooks(book, ul) {
 }
 // create the book list
 let books = [];
-if (localStorage.books){
+if (localStorage.books) {
   books = JSON.parse(localStorage.books);
 }
 // call nedded elements from the document
