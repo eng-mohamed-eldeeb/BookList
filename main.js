@@ -42,7 +42,7 @@ form.addEventListener('submit', (e) => {
   localStorage.books = JSON.stringify(books);
 });
 // delete the book, remove them from the book list and local storage
-bookList.addEventListener('click', (e) => {
+function deleteBook (e){
   if (e.target.className === 'delete') {
     const li = e.target.parentElement;
     li.parentNode.removeChild(li);
@@ -54,7 +54,9 @@ bookList.addEventListener('click', (e) => {
       }
     }
   }
+}
+// call delatebook function by using the remove button
+bookList.addEventListener('click', (e) => {
+  deleteBook(e);
   localStorage.books = JSON.stringify(books);
 });
-//storage books in local memory
-
