@@ -41,6 +41,11 @@ form.addEventListener('submit', (e) => {
   creatAndAddBooks(newBooke, bookList);
   localStorage.books = JSON.stringify(books);
 });
+//create storaged books
+for(let i=0; i<books.length; i++){
+  const newBooke = new Book(books[i].title, books[i].author);
+  creatAndAddBooks(newBooke, bookList);
+}
 // delete the book, remove them from the book list and local storage
 function deleteBook(e) {
   if (e.target.className === 'delete') {
