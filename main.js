@@ -33,14 +33,15 @@ const bookList = document.querySelector('.book-list');
 const form = document.getElementById('abbBookForm');
 const title = document.getElementById('title');
 const author = document.getElementById('author');
-// create the books and add them the book list
+// create the books, add them the book list and local storage
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const newBooke = new Book(title.value, author.value);
   books.push(newBooke);
   creatAndAddBooks(newBooke, bookList);
+  localStorage.books = JSON.stringify(books);
 });
-// delete the book and remove them from the book list
+// delete the book, remove them from the book list and local storage
 bookList.addEventListener('click', (e) => {
   if (e.target.className === 'delete') {
     const li = e.target.parentElement;
@@ -53,4 +54,7 @@ bookList.addEventListener('click', (e) => {
       }
     }
   }
+  localStorage.books = JSON.stringify(books);
 });
+//storage books in local memory
+
