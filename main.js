@@ -83,7 +83,6 @@ form.addEventListener('submit', (e) => {
   author.value = '';
   localStorage.books = JSON.stringify(books);
 });
-
 // create storaged books
 for (let i = 0; i < books.length; i += 1) {
   bookCount += 1;
