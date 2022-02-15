@@ -52,14 +52,15 @@ const Book = {
     }
   },
 };
+let newBook = Book;
 if (localStorage.books) {
   books = JSON.parse(localStorage.books);
 }
 // instance new_book
 function clonebook(book) {
-  let clone = {};
-  for ( let key in book ) {
-    if(book.hasOwnProperty(key)){
+  const clone = {};
+  for (const key in book) {
+    if (book.hasOwnProperty(key)) {
       clone[key] = book[key];
     }
   }
@@ -92,7 +93,7 @@ for (let i = 0; i < books.length; i += 1) {
 }
 
 // call delatebook method by using the remove button
-bookList.addEventListener("click", (e) => {
+bookList.addEventListener('click', (e) => {
   newBook = Book;
   newBook.deleteBook(e);
   localStorage.books = JSON.stringify(books);
