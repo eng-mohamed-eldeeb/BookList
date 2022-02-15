@@ -1,40 +1,45 @@
 // create the book list
 let books = [];
+
 // books count
 let bookCount = 0;
+
 // the book class
 const Book = {
-  title: "",
-  author: "",
+  title: '',
+  author: '',
+
   // to creat the title and the author
-  setBook: function setbook (bookeTitle, bookeAuthor) {
+  setBook: function setbook(bookeTitle, bookeAuthor) {
     this.title = bookeTitle;
     this.author = bookeAuthor;
   },
+
   // to create and add the book
-  creatAndAddBooks: function addbook (ul) {
+  creatAndAddBooks: function addbook(ul) {
+
     // create list li elemnts
-    const li = document.createElement("li");
+    const li = document.createElement('li');
     li.className = `${this.title}${this.author}`;
     const pForTitle = document.createElement('p');
-    const ulPWreaper = document.createElement("ul");
+    const ulPWreaper = document.createElement('ul');
     ulPWreaper.className = `ulWrapper`;
     const pForAuthor = document.createElement('p');
     const pForDelete = document.createElement('button');
-    pForDelete.className = "delete";
+    pForDelete.className = 'delete';
     // add content to the elements
     pForTitle.textContent = this.title;
     pForAuthor.textContent = this.author;
     pForDelete.textContent = 'Remove';
     li.innerHTML = `"${this.title}" by ${this.author} <button class="delete">Remove</button>`;
-    if(bookCount%2 === 1) {
+    if (bookCount % 2 === 1) {
       li.id = 'bg-color';
     }
     ul.appendChild(li);
     return this;
   },
 
-  deleteBook: function deletebook (e) {
+  deleteBook: function deletebook(e) {
     if (e.target.className === 'delete') {
       const li = e.target.parentElement;
       li.parentNode.removeChild(li);
@@ -70,32 +75,17 @@ form.addEventListener('submit', (e) => {
   author.value = "";
   localStorage.books = JSON.stringify(books);
 });
-// instance new_book
-function clonebook(book) {
-  let clone = {};
-  for ( let key in book ) {
-      if(book.hasOwnProperty(key)){
-          clone[key] = book[key];
-      }
-  }
-  return clone;
-}
+
 // create storaged books
 for (let i = 0; i < books.length; i += 1) {
-  //Mohamed changes
   bookCount += 1;
   new_book = Book;
   new_book.setBook(books[i].title, books[i].author);
   new_book.creatAndAddBooks(bookList);
 }
+
 // call delatebook method by using the remove button
 bookList.addEventListener("click", (e) => {
   new_book.deleteBook(e);
   localStorage.books = JSON.stringify(books);
 });
-// function updates items background on removin
-function backgroundUpdate (item) {
-  for (let i=0; i < books.length; i +=1 ){
-    item.classList.togle('bg-color');
-  }
-}
