@@ -58,11 +58,11 @@ const bookList = document.querySelector(".book-list");
 const form = document.getElementById("abbBookForm");
 const title = document.getElementById("title");
 const author = document.getElementById("author");
+  const new_book = Book;
 
 // create the books, add them the book list and local storage
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const new_book = Book;
   new_book.setBook(title.value, author.value);
   new_book.creatAndAddBooks(bookList);
   title.value = "";
