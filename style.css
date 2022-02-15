@@ -5,15 +5,10 @@
   box-sizing: border-box;
 }
 
-.delete {
-  padding: 0.2em 0.4em;
-  border: 1px solid #000;
-  font-size: 0.8em;
-}
-
 ul {
   list-style: none;
 }
+
 /* for the background color class */
 #bg-color {
   background-color: rgb(25, 202, 164);
@@ -74,7 +69,6 @@ ul {
   justify-content: space-between;
   align-items: center;
   padding: 2px 0;
-  /* gap: 1rem; */
 }
 
 .ulWrapper {
@@ -83,6 +77,9 @@ ul {
 }
 
 .delete {
+  padding: 0.2em 0.4em;
+  border: 1px solid #000;
+  font-size: 0.8em;
   justify-self: flex-end;
   background-color: rgb(25, 202, 164);
   color: white;
@@ -92,7 +89,6 @@ ul {
 
 .book-list hr {
   width: 100%;
-  /* margin: 0.7rem 0; */
 }
 
 #abbBookForm {

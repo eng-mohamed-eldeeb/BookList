@@ -6,26 +6,26 @@ let bookCount = 0;
 const Book = {
   title: "",
   author: "",
-  //to creat the title and the author
-  setBook: function (bookeTitle, bookeAuthor) {
+  // to creat the title and the author
+  setBook: function setbook (bookeTitle, bookeAuthor) {
     this.title = bookeTitle;
     this.author = bookeAuthor;
   },
   // to create and add the book
-  creatAndAddBooks: function (ul) {
+  creatAndAddBooks: function addbook (ul) {
     // create list li elemnts
     const li = document.createElement("li");
     li.className = `${this.title}${this.author}`;
-    const pForTitle = document.createElement("p");
+    const pForTitle = document.createElement('p');
     const ulPWreaper = document.createElement("ul");
     ulPWreaper.className = `ulWrapper`;
-    const pForAuthor = document.createElement("p");
-    const pForDelete = document.createElement("button");
+    const pForAuthor = document.createElement('p');
+    const pForDelete = document.createElement('button');
     pForDelete.className = "delete";
     // add content to the elements
     pForTitle.textContent = this.title;
     pForAuthor.textContent = this.author;
-    pForDelete.textContent = "Remove";
+    pForDelete.textContent = 'Remove';
     li.innerHTML = `"${this.title}" by ${this.author} <button class="delete">Remove</button>`;
     if(bookCount%2 === 1) {
       li.id = 'bg-color';
@@ -34,8 +34,8 @@ const Book = {
     return this;
   },
 
-  deleteBook: function (e) {
-    if (e.target.className === "delete") {
+  deleteBook: function deletebook (e) {
+    if (e.target.className === 'delete') {
       const li = e.target.parentElement;
       li.parentNode.removeChild(li);
       for (let i = 0; i < books.length; i += 1) {
@@ -53,14 +53,13 @@ if (localStorage.books) {
 }
 
 // call nedded elements from the document
-const bookList = document.querySelector(".book-list");
-const form = document.getElementById("abbBookForm");
-const title = document.getElementById("title");
-const author = document.getElementById("author");
-
+const bookList = document.querySelector('.book-list');
+const form = document.getElementById('abbBookForm');
+const title = document.getElementById('title');
+const author = document.getElementById('author');
 
 // create the books, add them the book list and local storage
-form.addEventListener("submit", (e) => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   bookCount += 1;
   let newBook = Book;
@@ -70,14 +69,14 @@ form.addEventListener("submit", (e) => {
   title.value = "";
   author.value = "";
   localStorage.books = JSON.stringify(books);
-  console.log(books);
 });
 // instance new_book
 function clonebook(book) {
-  var clone = {};
-  for( var key in book ) {
-      if(book.hasOwnProperty(key)) //ensure not adding inherited props
+  let clone = {};
+  for ( let key in book ) {
+      if(book.hasOwnProperty(key)){
           clone[key] = book[key];
+      }
   }
   return clone;
 }
@@ -93,11 +92,10 @@ for (let i = 0; i < books.length; i += 1) {
 bookList.addEventListener("click", (e) => {
   new_book.deleteBook(e);
   localStorage.books = JSON.stringify(books);
-  console.log(books);
 });
 // function updates items background on removin
 function backgroundUpdate (item) {
-  for (let i=0; i<books.length; i +=1){
+  for (let i=0; i < books.length; i +=1 ){
     item.classList.togle('bg-color');
   }
 }
