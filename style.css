@@ -14,7 +14,7 @@
 ul {
   list-style: none;
 }
-
+/* for the background color class */
 .bg-color {
   background-color: rgb(25, 202, 164);
 }

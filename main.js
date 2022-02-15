@@ -28,6 +28,7 @@ const Book = {
     li.innerHTML = `"${this.title}" by ${this.author} <button class="delete">Remove</button>`;
     ul.appendChild(li);
     ul.appendChild(hr);
+    // for the basckgound color part
     for (var i = 0; i < books.length; i += 1) {
       if (i % 2 === 0) {
         li.classList.add("bg-color");
