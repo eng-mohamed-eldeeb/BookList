@@ -15,10 +15,21 @@ ul {
   list-style: none;
 }
 
+.bg-color {
+  background-color: rgb(25, 202, 164);
+}
+
 .hero {
   padding: 2rem 0 0 2rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+
+.hero .hr {
+  margin: 3rem;
+  border: 1px solid #000;
+  width: 17rem;
 }
 
 .btn {
@@ -28,32 +39,76 @@ ul {
 .hero h1 {
   font-size: 3rem;
   padding-bottom: 2rem;
+  color: rgb(19, 160, 129);
+}
+
+.booksContaner {
+  width: 50%;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #000;
 }
 
 .books {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.3rem;
-}
-
-.book-list,
-.book-list li {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.book-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.book-list li {
+  width: 96%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 0;
+  /* gap: 1rem; */
+}
+
+.ulWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
+.delete {
+  justify-self: flex-end;
+  background-color: rgb(25, 202, 164);
+  color: white;
+  border-radius: 7px;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
 }
 
 .book-list hr {
   width: 100%;
-  margin: 0.7rem 0;
+  /* margin: 0.7rem 0; */
 }
 
 #abbBookForm {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   gap: 1rem;
+}
+
+#abbBookForm input {
+  width: 16rem;
+  padding: 3px;
+  border: 2px solid #000;
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
+}
+
+#abbBookForm button {
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
 }
