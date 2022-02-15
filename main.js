@@ -1,3 +1,5 @@
+// create the book list
+let books = [];
 // the book class
 const Book = {
   title: "",
@@ -31,6 +33,7 @@ const Book = {
         li.classList.add("bg-color");
       }
     }
+    return this;
   },
 
   deleteBook: function (e) {
@@ -47,9 +50,6 @@ const Book = {
     }
   },
 };
-
-// create the book list
-let books = [];
 if (localStorage.books) {
   books = JSON.parse(localStorage.books);
 }
@@ -58,10 +58,11 @@ const bookList = document.querySelector(".book-list");
 const form = document.getElementById("abbBookForm");
 const title = document.getElementById("title");
 const author = document.getElementById("author");
-const new_book = Book;
+
 // create the books, add them the book list and local storage
 form.addEventListener("submit", (e) => {
   e.preventDefault();
+  const new_book = Book;
   new_book.setBook(title.value, author.value);
   new_book.creatAndAddBooks(bookList);
   title.value = "";
@@ -71,15 +72,15 @@ form.addEventListener("submit", (e) => {
 });
 
 // create storaged books
-for (let i = 1; i <= books.length; i += 1) {
-  //Mohamed changes
-    // const new_book = Book;
-    // new_book.setBook(books[i].title, books[i].author);
-    // new_book.creatAndAddBooks(bookList);
-    // console.log(books[i].title, books[i].author);
-  const newBooke = new Book(books[i].title, books[i].author);
-  creatAndAddBooks(newBooke, bookList);
-}
+// for (let i = 0; i <= books.length; i += 1) {
+//   //Mohamed changes
+//   const new_book = Book;
+//   new_book.setBook(books[i].title, books[i].author);
+//   // new_book.creatAndAddBooks(bookList);
+//   // console.log(books[i].title, books[i].author);
+//   // const newBooke = new Book(books[i].title, books[i].author);
+//   // creatAndAddBooks(newBooke, bookList);
+// }
 // delete the book, remove them from the book list and local storage
 function deleteBook(e) {
   if (e.target.className === "delete") {
