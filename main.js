@@ -17,13 +17,12 @@ const Book = {
 
   // to create and add the book
   creatAndAddBooks: function addbook(ul) {
-
     // create list li elemnts
     const li = document.createElement('li');
     li.className = `${this.title}${this.author}`;
     const pForTitle = document.createElement('p');
     const ulPWreaper = document.createElement('ul');
-    ulPWreaper.className = `ulWrapper`;
+    ulPWreaper.className = 'ulWrapper';
     const pForAuthor = document.createElement('p');
     const pForDelete = document.createElement('button');
     pForDelete.className = 'delete';
@@ -56,7 +55,16 @@ const Book = {
 if (localStorage.books) {
   books = JSON.parse(localStorage.books);
 }
-
+// instance new_book
+function clonebook(book) {
+  let clone = {};
+  for ( let key in book ) {
+      if(book.hasOwnProperty(key)){
+          clone[key] = book[key];
+      }
+  }
+  return clone;
+}
 // call nedded elements from the document
 const bookList = document.querySelector('.book-list');
 const form = document.getElementById('abbBookForm');
@@ -67,25 +75,26 @@ const author = document.getElementById('author');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   bookCount += 1;
-  let newBook = Book;
+  const newBook = Book;
   newBook.setBook(title.value, author.value);
   const newbook = newBook.creatAndAddBooks(bookList);
   books.push(clonebook(newbook));
-  title.value = "";
-  author.value = "";
+  title.value = '';
+  author.value = '';
   localStorage.books = JSON.stringify(books);
 });
 
 // create storaged books
 for (let i = 0; i < books.length; i += 1) {
   bookCount += 1;
-  new_book = Book;
+  let new_book = Book;
   new_book.setBook(books[i].title, books[i].author);
   new_book.creatAndAddBooks(bookList);
 }
 
 // call delatebook method by using the remove button
 bookList.addEventListener("click", (e) => {
+  let new_book = Book;
   new_book.deleteBook(e);
   localStorage.books = JSON.stringify(books);
 });
