@@ -59,9 +59,9 @@ if (localStorage.books) {
 function clonebook(book) {
   let clone = {};
   for ( let key in book ) {
-      if(book.hasOwnProperty(key)){
-          clone[key] = book[key];
-      }
+    if(book.hasOwnProperty(key)){
+      clone[key] = book[key];
+    }
   }
   return clone;
 }
@@ -86,14 +86,14 @@ form.addEventListener('submit', (e) => {
 // create storaged books
 for (let i = 0; i < books.length; i += 1) {
   bookCount += 1;
-  let new_book = Book;
-  new_book.setBook(books[i].title, books[i].author);
-  new_book.creatAndAddBooks(bookList);
+  newBook = Book;
+  newBook.setBook(books[i].title, books[i].author);
+  newBook.creatAndAddBooks(bookList);
 }
 
 // call delatebook method by using the remove button
 bookList.addEventListener("click", (e) => {
-  let new_book = Book;
-  new_book.deleteBook(e);
+  newBook = Book;
+  newBook.deleteBook(e);
   localStorage.books = JSON.stringify(books);
 });
