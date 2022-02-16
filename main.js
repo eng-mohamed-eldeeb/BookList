@@ -75,18 +75,12 @@ class Book {
       localStorage.setItem('books', newList);
     }
   }
-
-  showBook(x) {
-    this.x = x;
-    show();
-  }
 }
 form.addEventListener('submit', (e) => {
   e.preventDefault();
   const newBook = new Book(titleValue.value, authorValue.value);
   newBook.addToLocalStorage();
-  const x = 0;
-  newBook.showBook(x);
+  show();
   titleValue.value = '';
   authorValue.value = '';
 });
