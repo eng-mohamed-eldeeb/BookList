@@ -60,8 +60,8 @@ if (localStorage.books) {
 function clonebook(book) {
   const clone = {};
   Object.entries(book).forEach(([key, value]) => {
-    clone[key] = value ;
-});
+    clone[key] = value;
+  });
   return clone;
 }
 // call nedded elements from the document
