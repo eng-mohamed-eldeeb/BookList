@@ -42,10 +42,7 @@ if (localStorage.getItem('books') != null) {
   show();
 }
 class Book {
-  constructor() {
-  }
-
-  creation (title, author) {
+  creation(title, author) {
     this.title = title;
     this.author = author;
   }
@@ -76,7 +73,7 @@ class Book {
 }
 const newBook = new Book();
 form.addEventListener('submit', (e) => {
-  newBook.creation(titleValue.value, authorValue.value)
+  newBook.creation(titleValue.value, authorValue.value);
   e.preventDefault();
   newBook.addToLocalStorage();
   show();
