@@ -59,11 +59,14 @@ if (localStorage.books) {
 // instance new_book
 function clonebook(book) {
   const clone = {};
-  for (const key in book) {
-    if (book.hasOwnProperty(key)) {
-      clone[key] = book[key];
-    }
-  }
+  // for (const key in book) {
+  //   if (book.hasOwnProperty(key)) {
+  //     clone[key] = book[key];
+  //   }
+  // }
+  Object.entries(book).forEach(([key, value]) => {
+    clone[key] = value ;
+});
   return clone;
 }
 // call nedded elements from the document
