@@ -1,70 +1,90 @@
-// the book class
+const titleValue = document.getElementById('title');
+const authorValue = document.getElementById('author');
+const booksUL = document.querySelector('.book-list');
+let bookArray = [];
+const form = document.querySelector('#abbBookForm');
+
+function show() {
+  let bookId = 0;
+  let Current = localStorage.getItem('books');
+  Current = JSON.parse(Current);
+  if (Current) {
+    booksUL.innerHTML = '';
+    Current.forEach((book) => {
+      const li = document.createElement('li');
+      const liP1 = document.createElement('li');
+      const liP2 = document.createElement('li');
+      li.className = `${bookId}`;
+      const pForTitle = document.createElement('p');
+      const pForAuthor = document.createElement('p');
+      const ulPContaner = document.createElement('ul');
+      ulPContaner.className = 'ulWrapper';
+      const pForDelete = document.createElement('button');
+      pForDelete.className = 'delete';
+      pForTitle.textContent = book.title;
+      pForAuthor.textContent = book.author;
+      pForDelete.textContent = 'Remove';
+      liP2.appendChild(pForTitle);
+      liP1.appendChild(pForAuthor);
+      ulPContaner.innerHTML = `"${book.title}" by ${book.author}`;
+      li.appendChild(ulPContaner);
+      li.appendChild(pForDelete);
+      booksUL.appendChild(li);
+      if (bookId % 2 === 1) {
+        li.id = 'bg-color';
+      }
+      bookId += 1;
+    });
+  }
+}
+
+if (localStorage.getItem('books') != null) {
+  show();
+}
 class Book {
-  constructor(title, author) {
+  constructor() {
+    return this;
+  }
+
+  creation(title, author) {
     this.title = title;
     this.author = author;
   }
-}
-// to create and add the book
-function creatAndAddBooks(book, ul) {
-  // create list li elemnts
-  const li = document.createElement('li');
-  li.className = `${book.title}${book.author}`;
-  const pForTitle = document.createElement('p');
-  const pForAuthor = document.createElement('p');
-  const pForDelete = document.createElement('button');
-  const hr = document.createElement('hr');
-  pForDelete.className = 'delete';
-  // add content to the elements
-  pForTitle.textContent = book.title;
-  pForAuthor.textContent = book.author;
-  pForDelete.textContent = 'Delete';
-  // add element to the list and the list to the ul
-  li.appendChild(pForTitle);
-  li.appendChild(pForAuthor);
-  li.appendChild(pForDelete);
-  li.appendChild(hr);
-  ul.appendChild(li);
-}
-// create the book list
-let books = [];
-if (localStorage.books) {
-  books = JSON.parse(localStorage.books);
-}
-// call nedded elements from the document
-const bookList = document.querySelector('.book-list');
-const form = document.getElementById('abbBookForm');
-const title = document.getElementById('title');
-const author = document.getElementById('author');
-// create the books, add them the book list and local storage
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const newBooke = new Book(title.value, author.value);
-  books.push(newBooke);
-  creatAndAddBooks(newBooke, bookList);
-  localStorage.books = JSON.stringify(books);
-});
-// create storaged books
-for (let i = 0; i < books.length; i += 1) {
-  const newBooke = new Book(books[i].title, books[i].author);
-  creatAndAddBooks(newBooke, bookList);
-}
-// delete the book, remove them from the book list and local storage
-function deleteBook(e) {
-  if (e.target.className === 'delete') {
-    const li = e.target.parentElement;
-    li.parentNode.removeChild(li);
-    for (let i = 0; i < books.length; i += 1) {
-      let ClassNAme = books[i].title;
-      ClassNAme += books[i].author;
-      if (e.target.parentElement.className === ClassNAme) {
-        books.splice(i, 1);
-      }
+
+  addToLocalStorage() {
+    const Current = localStorage.getItem('books');
+    if (!Current) {
+      bookArray.push(this);
+      const newList = JSON.stringify(bookArray);
+      localStorage.setItem('books', newList);
+    } else {
+      bookArray = JSON.parse(Current);
+      bookArray.push(this);
+      const newList = JSON.stringify(bookArray);
+      localStorage.setItem('books', newList);
     }
   }
+
+  deleteBook(i) {
+    this.i = i;
+    let currentBooks = localStorage.getItem('books');
+    currentBooks = JSON.parse(currentBooks);
+    currentBooks.splice(this.i, 1);
+    currentBooks = JSON.stringify(currentBooks);
+    localStorage.setItem('books', currentBooks);
+    show();
+  }
 }
-// call delatebook function by using the remove button
-bookList.addEventListener('click', (e) => {
-  deleteBook(e);
-  localStorage.books = JSON.stringify(books);
+const newBook = new Book();
+form.addEventListener('submit', (e) => {
+  newBook.creation(titleValue.value, authorValue.value);
+  e.preventDefault();
+  newBook.addToLocalStorage();
+  show();
+  titleValue.value = '';
+  authorValue.value = '';
+});
+
+booksUL.addEventListener('click', (e) => {
+  newBook.deleteBook(e.target.parentNode.className);
 });

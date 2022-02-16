@@ -18,6 +18,19 @@ Additional description about the project and its features.
 
 - project: (https://eng-mohamed-eldeeb.github.io/BookList/)
 
+## Install
+
+- Install node.js from [HERE](https://nodejs.org/en/).
+  
+## Run locally
+
+1. Clone the project using git-bash or Githup Desktop.
+2. Open the project folder with VSCode or any Editor.
+3. Open terminal and navigate to the project folder.
+4. Type `npm install`.
+5. Type `npm start`.
+
+
 ## Built With
 
 - HTML
