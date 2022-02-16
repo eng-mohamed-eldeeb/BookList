@@ -42,6 +42,10 @@ if (localStorage.getItem('books') != null) {
   show();
 }
 class Book {
+  constructor() {
+    return this;
+  }
+
   creation(title, author) {
     this.title = title;
     this.author = author;
