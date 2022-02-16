@@ -1,100 +1,97 @@
-// create the book list
-let books = [];
+let titleValue = document.getElementById("title");
+let authorValue = document.getElementById("author");
+let booksUL = document.querySelector(".book-list");
+let bookArray = [];
+let form = document.querySelector("#abbBookForm");
 
-// books count
-let bookCount = 0;
-
-// the book class
-const Book = {
-  title: '',
-  author: '',
-
-  // to creat the title and the author
-  setBook: function setbook(bookeTitle, bookeAuthor) {
-    this.title = bookeTitle;
-    this.author = bookeAuthor;
-  },
-
-  // to create and add the book
-  creatAndAddBooks: function addbook(ul) {
-    // create list li elemnts
-    const li = document.createElement('li');
-    li.className = `${this.title}${this.author}`;
-    const pForTitle = document.createElement('p');
-    const ulPWreaper = document.createElement('ul');
-    ulPWreaper.className = 'ulWrapper';
-    const pForAuthor = document.createElement('p');
-    const pForDelete = document.createElement('button');
-    pForDelete.className = 'delete';
-    // add content to the elements
-    pForTitle.textContent = this.title;
-    pForAuthor.textContent = this.author;
-    pForDelete.textContent = 'Remove';
-    li.innerHTML = `"${this.title}" by ${this.author} <button class="delete">Remove</button>`;
-    if (bookCount % 2 === 1) {
-      li.id = 'bg-color';
-    }
-    ul.appendChild(li);
-    return this;
-  },
-
-  deleteBook: function deletebook(e) {
-    if (e.target.className === 'delete') {
-      const li = e.target.parentElement;
-      li.parentNode.removeChild(li);
-      for (let i = 0; i < books.length; i += 1) {
-        let ClassNAme = books[i].title;
-        ClassNAme += books[i].author;
-        if (e.target.parentElement.className === ClassNAme) {
-          books.splice(i, 1);
-        }
+function show() {
+  var book_id = 0;
+  let Current = localStorage.getItem("books");
+    Current = JSON.parse(Current);
+  if (Current) {
+    booksUL.innerHTML = "";
+    Current.forEach((book) => {
+      const li = document.createElement("li");
+      const liP1 = document.createElement("li");
+      const liP2 = document.createElement("li");
+      li.className = `${book_id}`;
+      const pForTitle = document.createElement("p");
+      const pForAuthor = document.createElement("p");
+      const ulPContaner = document.createElement("ul");
+      ulPContaner.className = 'ulWrapper';
+      const pForDelete = document.createElement("button");
+      pForDelete.className = "delete";
+      // add content to the elements
+      pForTitle.textContent = book.title;
+      pForAuthor.textContent = book.author;
+      pForDelete.textContent = "Remove";
+      // add element to the list and the list to the ul
+      liP2.appendChild(pForTitle);
+      liP1.appendChild(pForAuthor);
+      ulPContaner.innerHTML = `"${book.title}" by ${book.author}`;
+      // ulPContaner.appendChild(liP1);
+      // ulPContaner.appendChild(liP2);
+      li.appendChild(ulPContaner);
+      // li.appendChild(pForTitle);
+      // li.appendChild(pForAuthor);
+      li.appendChild(pForDelete);
+      booksUL.appendChild(li);
+      if (book_id % 2 === 1) {
+        li.id = 'bg-color';
       }
-    }
-  },
-};
-let newBook = Book;
-if (localStorage.books) {
-  books = JSON.parse(localStorage.books);
+      book_id++;
+    });
+  }
 }
-// instance new_book
-function clonebook(book) {
-  const clone = {};
-  for (const key in book) {
-    if (book.hasOwnProperty(key)) {
-      clone[key] = book[key];
+
+if (localStorage.getItem("books") != null) {
+  show();
+}
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
+  }
+  addToLocalStorage() {
+    let Current = localStorage.getItem("books");
+    if (!Current) {
+      bookArray.push(this);
+      let newList = JSON.stringify(bookArray);
+      localStorage.setItem("books", newList);
+    } else {
+      bookArray = JSON.parse(Current);
+      bookArray.push(this);
+      let newList = JSON.stringify(bookArray);
+      localStorage.setItem("books", newList);
     }
   }
-  return clone;
-}
-// call nedded elements from the document
-const bookList = document.querySelector('.book-list');
-const form = document.getElementById('abbBookForm');
-const title = document.getElementById('title');
-const author = document.getElementById('author');
+  showBook() {
+    show();
+  }
 
-// create the books, add them the book list and local storage
-form.addEventListener('submit', (e) => {
+  deleteBookLi () {
+    deleteBook();
+  }
+
+}
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-  bookCount += 1;
-  const newBook = Book;
-  newBook.setBook(title.value, author.value);
-  const newbook = newBook.creatAndAddBooks(bookList);
-  books.push(clonebook(newbook));
-  title.value = '';
-  author.value = '';
-  localStorage.books = JSON.stringify(books);
+  let new_book = new Book(titleValue.value, authorValue.value);
+  new_book.addToLocalStorage();
+  new_book.showBook();
+  titleValue.value = '';
+  authorValue.value = '';
 });
-// create storaged books
-for (let i = 0; i < books.length; i += 1) {
-  bookCount += 1;
-  newBook = Book;
-  newBook.setBook(books[i].title, books[i].author);
-  newBook.creatAndAddBooks(bookList);
+
+function deleteBook(i) {
+  let currentBooks = localStorage.getItem("books");
+  currentBooks = JSON.parse(currentBooks);
+  currentBooks.splice(i, 1);
+  currentBooks = JSON.stringify(currentBooks);
+  localStorage.setItem("books", currentBooks);
+  show();
 }
 
-// call delatebook method by using the remove button
-bookList.addEventListener('click', (e) => {
-  newBook = Book;
-  newBook.deleteBook(e);
-  localStorage.books = JSON.stringify(books);
+booksUL.addEventListener("click", (e) => {
+  deleteBook(e.target.parentNode.className);
 });

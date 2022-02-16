@@ -43,7 +43,8 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #000;
+  border: 4px solid rgb(19, 160, 129);
+  border-radius: 10px;
 }
 
 .books {
@@ -62,18 +63,21 @@ ul {
 }
 
 .book-list li {
-  width: 96%;
-  height: 100%;
+  width: 100%;
+  border-bottom: 4px solid rgb(19, 160, 129);
+  border-right: 4px solid rgb(19, 160, 129);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 2px 0;
+  padding: 1rem;
 }
 
 .ulWrapper {
   display: flex;
   flex-direction: row;
+  font-size: 1.4rem;
+  width: auto;
 }
 
 .delete {
@@ -85,10 +89,6 @@ ul {
   color: white;
   border-radius: 7px;
   box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.6);
-}
-
-.book-list hr {
-  width: 100%;
 }
 
 #abbBookForm {
