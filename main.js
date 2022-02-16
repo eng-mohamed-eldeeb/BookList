@@ -44,6 +44,7 @@ function show() {
   }
 }
 
+
 if (localStorage.getItem("books") != null) {
   show();
 }
@@ -68,6 +69,21 @@ class Book {
   showBook() {
     show();
   }
+=======
+// instance new_book
+function clonebook(book) {
+  const clone = {};
+  Object.entries(book).forEach(([key, value]) => {
+    clone[key] = value;
+  });
+  return clone;
+}
+// call nedded elements from the document
+const bookList = document.querySelector('.book-list');
+const form = document.getElementById('abbBookForm');
+const title = document.getElementById('title');
+const author = document.getElementById('author');
+>>>>>>> ad69a6cbce7d83c1ea956a9c084ee0e6b1612eb1
 
   deleteBookLi () {
     deleteBook();
