@@ -8,20 +8,47 @@
     <title>Book List</title>
   </head>
   <body>
+    <header>
+      <nav class="navbar">
+        <div class="navContaner">
+          <h3>Awesome Books</h3>
+          <ul class="spans">
+            <li class="liborder"><span class=" spanLiL">List</span></li>
+            <li class="liborder"><span class="spanLiA">Add new</span></li>
+            <li><span class="spanLiC">contact</span></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <section class="hero">
-      <h1>All awesome Books</h1>
-      <div class="booksContaner">
-        <div class="books">
-          <ul class="book-list"></ul>
+      <div class="asesomeBooks d-none">
+        <h1>All awesome Books</h1>
+        <div class="booksContaner">
+          <div class="books">
+            <ul class="book-list"></ul>
+          </div>
         </div>
       </div>
-      <hr class="hr">
-      <h1>Add a new Book</h1>
-      <form id="abbBookForm">
+      <div class="addForm d-none">
+        <h1>Add a new Book</h1>
+        <form id="abbBookForm">
           <input id="title" type="text" placeholder="Title" required />
           <input id="author" type="text" placeholder="Author" required />
-        <button type="submit" class="btn">Add</button>
-      </form>
+          <button type="submit" class="btn">Add</button>
+        </form>
+      </div>
+      <div class="contact d-none">
+        <h1>contact information</h1>
+        <h3>
+          Do you have any questions or you just want to say 'Hello'?<br />You
+          can reach out to us
+        </h3>
+        <ul>
+          <li>Our e-main: agnabiieldeeeb@gmain.com</li>
+          <li>Our phone number: 01555169611</li>
+          <li>our address: tanta Egypt</li>
+        </ul>
+      </div>
     </section>
     <script src="main.js"></script>
   </body>
